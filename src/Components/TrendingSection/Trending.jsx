@@ -88,6 +88,7 @@ const Trending = () => {
 
                 </div>
             </div>
+            <br />
                 <hr />
         </>
     )
