@@ -1,0 +1,31 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.1vw 4vw;
+  background-color: transparent;
+}
+.left {
+  width: 10vw;
+  height: 5vw;
+  display: flex;
+  align-items: center;
+}
+.left > img {
+  height: 3vw;
+}
+.right {
+  width: 30vw;
+  height: 5vw;
+  display: flex;
+  align-items: center;
+}
+.curvy_box {
+  width: 8vw;
+  height: 3vw;
+  background-color:rgb(19, 18, 18);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 22px;
+}
