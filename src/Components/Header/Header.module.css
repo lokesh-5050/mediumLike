@@ -2,15 +2,18 @@
     display: flex;
     justify-content: space-between;
     background-color: #FFC017;
-    padding: 0 8vw;
-    height: 30vw;
+    padding: 6vw 8vw;
+    height: 33vw;
+    margin-top: -2.2vw;
 }
 .lefty>h1{
     font-size: 6vw;
+    margin-bottom: 1.5vw;
+
 }
 .lefty>h4{
     font-size: 1.6vw;
     width: 30vw;
-    margin-top: -2vw;
     margin-bottom: 2.5vw;
+
 }

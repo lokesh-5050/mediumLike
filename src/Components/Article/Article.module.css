@@ -1,55 +1,85 @@
-.wrapper{
+.wrapper {
     padding: 3vw 8vw;
     display: flex;
 }
-.lef{
+
+.lef {
     width: 50vw;
     /* background-color: yellow; */
     /* color: #cecece; */
+    max-height: 90vh;
+    overflow-y: scroll;
+
+
 }
-.articles{
+
+.articles {
     max-width: inherit;
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 1.5vw;
 }
-.article{
+
+.article {
     width: inherit;
     display: flex;
     justify-content: space-between;
 }
-.by_who{
+
+.by_who {
     display: flex;
     align-items: center;
     height: 3vw;
 }
-.by_who >img{
+
+.by_who>img {
     height: 2vw;
 }
-.content{
-    margin-top: -1vw;
-}
-.content > h5{
-    margin-top: -1vw;
+
+.content>h5 {
+    margin-top: 1vw;
     max-width: 35vw;
+    line-height: 1.3vw;
+    padding-bottom: 1vw;
 }
-.footer{
-    margin-top: -2.1vw;
+
+.footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.categories_links{
+.categories_links {
     margin-left: 1vw;
     position: relative;
     left: 5vw;
     /* background-color:teal; */
 }
 
-.links{
-    display: flex   ;
+.links {
+    padding-top: 1.2vw;
+    display: flex;
     flex-wrap: wrap;
     gap: 1vw;
-    width: 30vw;
+    max-width: 26vw;
+    justify-content: space-between;
+    white-space: nowrap;
+}
+
+hr {
+    color: rgb(255, 255, 255);
+}
+
+.options>h5 {
+    width: fit-content;
+    color: rgb(128, 127, 127);
+}
+
+.options {
+    display: flex;
+    padding: 3vh 0;
+    max-width: 26vmax;
+    flex-wrap: wrap;
+    gap: 1vw;
+    justify-content: flex-start;
 }

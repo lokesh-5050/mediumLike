@@ -3,24 +3,34 @@
   justify-content: space-between;
   padding: 0.1vw 4vw;
   background-color: transparent;
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
 .left {
   width: 10vw;
   height: 5vw;
   display: flex;
   align-items: center;
+
+  border-bottom: none;
 }
 .left > img {
   height: 3vw;
 }
 .right {
-  width: 30vw;
+  width: 40vw;
   height: 5vw;
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  gap: 2vmax;
+  border-bottom: none;
+}
+.right>h5{
+  white-space: nowrap;
+  /* background-color: red; */
 }
 .curvy_box {
-  width: 8vw;
+  width: 25vw;
   height: 3vw;
   background-color:rgb(19, 18, 18);
   color: #fff;
