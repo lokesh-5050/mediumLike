@@ -4,7 +4,7 @@
 }
 
 .lef {
-    width: 50vw;
+    width: 51vw;
     /* background-color: yellow; */
     /* color: #cecece; */
     max-height: 90vh;
@@ -17,13 +17,14 @@
     max-width: inherit;
     display: flex;
     flex-direction: column;
-    gap: 1.5vw;
+    gap: 2vw;
 }
 
 .article {
     width: inherit;
     display: flex;
     justify-content: space-between;
+    gap: 1vw;
 }
 
 .by_who {
@@ -82,4 +83,11 @@ hr {
     flex-wrap: wrap;
     gap: 1vw;
     justify-content: flex-start;
+}
+/* .post_potser{
+
+    background-color: yellow;
+} */
+.lef::-webkit-scrollbar{
+    display: none;
 }

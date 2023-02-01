@@ -1,14 +1,22 @@
 import React from 'react'
 import Roundedbtn from '../Ui/Roundedbtn'
 import module from './Authoptions.module.css'
+
+import { useDispatch } from 'react-redux'
+import { handleGettingStarted } from '../../store/GetStartedSlice/GetStartedSlice'
+
 const Authoptions = () => {
+    const Dispatch = useDispatch()
+    const getStarted = () => {
+        Dispatch(handleGettingStarted())
+    }
     return (
         <>
             <div className={`${module.authWrap}`}>
                 <div className={`${module.center_div}`}>
                     <div className={`${module.back}`}>
                         <h1></h1>
-                        <h4>X</h4>
+                        <h4 onClick={getStarted} style={{cursor:'pointer'}}>X</h4>
                     </div>
                     <div className={`${module.links}`}>
 
