@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const { default: isEmail } = require('validator/lib/isemail')
-const { use } = require('../routes/indexRoutes')
-
+const bcrypt = require('bcrypt')
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -25,6 +24,21 @@ const userSchema = new mongoose.Schema({
         default: 'avatar.png'
     }
 })
+
+userSchema.pre('save' , async function(){
+    console.log("inside pre");
+    this.password =  await bcrypt.hash(this.password , 10)
+})
+
+
+userSchema.methods.comparepassword = function(password){
+    console.log("insdie comparepassword")
+    return bcrypt.compareSync(password , this.password)
+}
+
+
+
+
 
 const user = mongoose.model('user', userSchema)
 
