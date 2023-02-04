@@ -14,3 +14,18 @@ exports.sendToken = async (user, req, res, statusCode) => {
     }
 
 }
+
+exports.authenticate = async (req, res, next) => {
+    try {
+        let token = req.cookies['token']
+        const isValid = jwt.verify(token, '566gsadygywg3q4', { complete: true })
+
+        if (!isValid) return res.status(440).json({ "message": "Session expired" })
+
+        // res.status(200).json({ "message": "Authenticated" })
+        next()
+
+    } catch (error) {
+        res.status(501).json({ "message": error.message })
+    }
+}

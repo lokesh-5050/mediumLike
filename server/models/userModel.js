@@ -42,6 +42,9 @@ userSchema.methods.signJwt = function (user) {
     return jwt.sign({ user }, '566gsadygywg3q4')
 }
 
+// userSchema.methods.verifyJwt = function(token){
+//     return jwt.verify(token , '566gsadygywg3q4', {complete:true})
+// }
 
 
 
