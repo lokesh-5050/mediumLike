@@ -46,3 +46,14 @@ exports.signin = async (req, res, next) => {
     }
 
 }
+
+exports.signout = async (req, res, next) => {
+    try {
+        await res.clearCookie('token')
+        res.status(404).json({ message: "Logged out" })
+    } catch (error) {
+        res.status(501).json({ message: error.message })
+    }
+}
+
+

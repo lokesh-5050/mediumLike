@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const { default: isEmail } = require('validator/lib/isemail')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -34,6 +35,11 @@ userSchema.pre('save' , async function(){
 userSchema.methods.comparepassword = function(password){
     console.log("insdie comparepassword")
     return bcrypt.compareSync(password , this.password)
+}
+
+userSchema.methods.sendToken = function(token){
+    console.log("inside sendToken")
+    return jwt.verify(token , 'jwt7665757as' , {complete:true})
 }
 
 
