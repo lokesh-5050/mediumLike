@@ -1,14 +1,13 @@
 const userModel = require('../models/userModel')
-exports.authenticate = async (req, res, next) => {
+const jwt = require('jsonwebtoken')
+exports.sendToken = async (user, req, res, statusCode) => {
     try {
-        let {token} = req.cookie
-        console.log(token, " cookie")
-        const isVerified = await userModel.sendToken(token)
-        console.log(isVerified, " isVerified")
 
-        if (!isVerified) return res.status(440).json({ message: "Session Expired" })
+        const token = user.signJwt()
+        res.cookie('token', token, { maxAge: Date.now() + 3 * 24 * 60 * 60 * 1000, expires: '1h' })
 
-        res.status(200).json({ message: "Authenticated" })
+
+        res.status(200).json({ message: "Logged In" })
 
     } catch (error) {
         res.status(440).json({ message: error.message })

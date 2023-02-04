@@ -26,20 +26,20 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-userSchema.pre('save' , async function(){
+userSchema.pre('save', async function () {
     console.log("inside pre");
-    this.password =  await bcrypt.hash(this.password , 10)
+    this.password = await bcrypt.hash(this.password, 10)
 })
 
 
-userSchema.methods.comparepassword = function(password){
+userSchema.methods.comparepassword = function (password) {
     console.log("insdie comparepassword")
-    return bcrypt.compareSync(password , this.password)
+    return bcrypt.compareSync(password, this.password)
 }
 
-userSchema.methods.sendToken = function(token){
-    console.log("inside sendToken")
-    return jwt.verify(token , 'jwt7665757as' , {complete:true})
+userSchema.methods.signJwt = function (user) {
+    console.log("user ", user);
+    return jwt.sign({ user }, '566gsadygywg3q4')
 }
 
 

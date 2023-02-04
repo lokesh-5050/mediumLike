@@ -2,9 +2,8 @@ const express = require('express');
 const { homePage, signup, signin, signout } = require('../controllers/indexController');
 const router = express.Router()
 const userModel = require('../models/userModel');
-const { authenticate } = require('../Utils/Auth');
 
-router.get('/', authenticate ,homePage)
+router.get('/', homePage)
 
 /**
  * @post route => sign up
