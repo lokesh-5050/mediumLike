@@ -1,7 +1,7 @@
 const userModel = require('../models/userModel')
 exports.authenticate = async (req, res, next) => {
     try {
-        let {token} = req.cookies
+        let {token} = req.cookie
         console.log(token, " cookie")
         const isVerified = await userModel.sendToken(token)
         console.log(isVerified, " isVerified")
