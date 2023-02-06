@@ -24,9 +24,9 @@ exports.signup = async (req, res, next) => {
 exports.signin = async (req, res, next) => {
     let { email, password } = req.body
     try {
-        let user = await userModel.findOne({ email }).exec()
+        let user = await userModel.findOne({ email }).select("+password").exec()
         if (!user) {
-            return res.status(404).json({ message: "User not Found!!" })
+            return res.status(404).json({ message: "User not found!!!" })
         }
 
         const matched = await user.comparepassword(password)
