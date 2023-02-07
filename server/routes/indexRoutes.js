@@ -1,9 +1,9 @@
 const express = require('express');
-const { homePage, signup, signin, signout, sendmail } = require('../controllers/indexController');
+const { homePage, signup, signin, signout, sendmail, resetPassword } = require('../controllers/indexController');
 const router = express.Router()
 const userModel = require('../models/userModel');
 const { authenticate } = require('../Utils/Auth');
-router.get('/', authenticate,homePage)
+router.get('/', authenticate, homePage)
 
 /**
  * @post route => sign up
@@ -24,5 +24,10 @@ router.post('/signout', signout)
  * @post route => send-mail
  */
 router.get('/send-mail', sendmail)
+
+/** 
+* @post route => reset-password/:id
+*/
+router.get('/reset-password/:id', resetPassword)
 
 module.exports = router;

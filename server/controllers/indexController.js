@@ -43,6 +43,7 @@ exports.signin = async (req, res, next) => {
 
         if (!token) return res.status(501).json({ "message": "Token genertion failed" })
 
+
         sendToken(user, req, res, 200)
 
         // res.status(200).json({ token: token, message: "Logged in" })
@@ -66,19 +67,48 @@ exports.sendmail = async (req, res, next) => {
     try {
         let { email } = req.body;
 
-        let user = await userModel.findOne({ email })
+        let user = await userModel.findOne({ email }).exec()
 
         if (!user) res.status(404).json({ message: "User not found" })
 
-        let pageUrl = req.protocol + "://" + req.hostname + process.env.PORT + `/reset-password/${user._id}`
+        let id = user._id
+
+        let pageUrl = req.protocol + "://" + req.hostname + ":" + process.env.PORT + "/api/v1" + `/reset-password/${user._id}`
         console.log(pageUrl);
 
+        if (user.passwordResetToken === 0) {
+            await mailer(email, pageUrl)
+            console.log("SENT");
+            let updatedUser = await userModel.findByIdAndUpdate(id, { passwordResetToken: 1 })
+            res.status(200).json({ message: "mail sent check inbox/spam", updatedUser })
+        } else {
+            res.status(501).json({ messgae: "not sent" })
+        }
 
-        await mailer(email , pageUrl)
-
-        res.status(200).json({ message: "mail sent check inbox/spam" })
 
     } catch (error) {
-        res.status(501).json({message: error})
+        res.status(501).json({ message: error.message })
+    }
+}
+
+
+exports.resetPassword = async (req, res, next) => {
+    try {
+        let { id } = req.params
+        let { password } = req.body
+        console.log(id, " id");
+
+        let user = await userModel.findById(id).select("+password").exec()
+        console.log(user, " line 102");
+        if (user.passwordResetToken === 1) {
+            user.password = password;
+            user.passwordResetToken = 0;
+            user.save()
+        } else {
+            res.status(500).json({ message: "Reset link expired" })
+        }
+
+    } catch (error) {
+        res.status(501).json({ message: error.message })
     }
 }

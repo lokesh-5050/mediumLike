@@ -31,7 +31,7 @@ async function mailer(receiver,url){
             to: receiver,
             subject: "Nodemailer testing",
             text: "Hey lokesh! zeus here",
-            html: `<a>${url}</a>`
+            html: `<a href="${url}">Rest Password</a>`
         }
 
         const result =  await transport.sendMail(details);

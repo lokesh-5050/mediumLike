@@ -4,6 +4,8 @@ exports.sendToken = async (user, req, res, statusCode) => {
     try {
 
         const token = user.signJwt()
+
+        console.log(token , " auth ");
         res.cookie('token', token, { expires: new Date(Date.now() + 3*24*60*60*1000) })
         req.id = user._id
         // console.log(req.id);

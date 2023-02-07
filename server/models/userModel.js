@@ -35,12 +35,17 @@ const userSchema = new mongoose.Schema({
     stories: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'blog'
-    }]
+    }],
+    passwordResetToken: {
+        type:Number,
+        default:0
+    }
 })
 
 userSchema.pre('save', async function () {
-    console.log("inside pre");
+    console.log("inside pre " , this.password);
     this.password = await bcrypt.hash(this.password, 10)
+    console.log("after hash " , this.password);
 })
 
 userSchema.methods.comparepassword = function (password) {
@@ -49,7 +54,7 @@ userSchema.methods.comparepassword = function (password) {
 }
 
 userSchema.methods.signJwt = function (user) {
-    console.log("user ", user);
+    console.log("user 52", user);
     return jwt.sign({ user }, '566gsadygywg3q4', { expiresIn: '3d' })
 }
 
