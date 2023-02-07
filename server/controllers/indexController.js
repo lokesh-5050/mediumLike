@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const { sendToken } = require('../Utils/Auth')
 
 const nodemailer = require('nodemailer')
+const mailer = require('../nodemailer')
 
 exports.homePage = async (req, res, next) => {
     res.send("hello")
@@ -61,17 +62,23 @@ exports.signout = async (req, res, next) => {
     }
 }
 
-exports.sendmail = async(req,res,next) =>{
+exports.sendmail = async (req, res, next) => {
     try {
-        let {email} = req.body;
+        let { email } = req.body;
 
-        let user = await userModel.findOne({email})
+        let user = await userModel.findOne({ email })
 
-        if(!user) res.status(404).json({message : "User not found"})
+        if (!user) res.status(404).json({ message: "User not found" })
 
-        
+        let pageUrl = req.protocol + "://" + req.hostname + process.env.PORT + `/reset-password/${user._id}`
+        console.log(pageUrl);
+
+
+        await mailer(email , pageUrl)
+
+        res.status(200).json({ message: "mail sent check inbox/spam" })
 
     } catch (error) {
-        
+        res.status(501).json({message: error})
     }
 }
