@@ -1,6 +1,9 @@
 const userModel = require('../models/userModel')
 const jwt = require('jsonwebtoken')
 const { sendToken } = require('../Utils/Auth')
+
+const nodemailer = require('nodemailer')
+
 exports.homePage = async (req, res, next) => {
     res.send("hello")
 }
@@ -58,4 +61,17 @@ exports.signout = async (req, res, next) => {
     }
 }
 
+exports.sendmail = async(req,res,next) =>{
+    try {
+        let {email} = req.body;
 
+        let user = await userModel.findOne({email})
+
+        if(!user) res.status(404).json({message : "User not found"})
+
+        
+
+    } catch (error) {
+        
+    }
+}

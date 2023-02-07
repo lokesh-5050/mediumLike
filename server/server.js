@@ -22,3 +22,5 @@ app.use('/api/v1/', indexRoutes)
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 })
+
+//nodemailer pass  => aebmjqoesckdjmqf

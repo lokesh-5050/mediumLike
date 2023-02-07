@@ -5,7 +5,8 @@ exports.sendToken = async (user, req, res, statusCode) => {
 
         const token = user.signJwt()
         res.cookie('token', token, { expires: new Date(Date.now() + 3*24*60*60*1000) })
-
+        req.id = user._id
+        // console.log(req.id);
         res.status(200).json({ message: "Logged In", "token": token })
 
     } catch (error) {
@@ -18,7 +19,6 @@ exports.authenticate = async (req, res, next) => {
     try {
         let token = req.cookies['token']
         const isValid = jwt.verify(token, '566gsadygywg3q4')
-
         next()
         // res.status(200).json({ "message": "Authenticated" })
 
