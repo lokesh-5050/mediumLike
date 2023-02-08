@@ -3,7 +3,16 @@ const jwt = require('jsonwebtoken')
 const { sendToken } = require('../Utils/Auth')
 
 const nodemailer = require('nodemailer')
-const mailer = require('../nodemailer')
+const mailer = require('../Utils/nodemailer')
+
+const cloudinary = require('cloudinary').v2
+const formidable = require('formidable')
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 exports.homePage = async (req, res, next) => {
     res.send("hello")
@@ -92,7 +101,7 @@ exports.sendmail = async (req, res, next) => {
 }
 
 
-exports.resetPassword = async (req, res, next) => {
+exports.forgotPassword = async (req, res, next) => {
     try {
         let { id } = req.params
         let { password } = req.body
@@ -110,5 +119,53 @@ exports.resetPassword = async (req, res, next) => {
 
     } catch (error) {
         res.status(501).json({ message: error.message })
+    }
+}
+
+exports.upload = async (req, res, next) => {
+    try {
+        const form = new formidable()
+
+        form.parse(req, async (err, fields, files) => {
+            if (files) {
+                const { public_id, secure_url } = await cloudinary.uploader.upload(files.upload.filepath, {
+                    folder: 'medium',
+                    crop: 'scale',
+                    width: 1920
+                })
+                console.log(public_id, secure_url);
+                let user = userModel.findById(req.id).exec()
+                user.avatar = {
+                    public_id,
+                    url: secure_url
+                }
+                // await user.save()
+                //or 
+                // userModel.findByIdAndUpdate(id , {$set:user} , {new:true})
+
+                res.status(200).json({ message: "File uploaded" })
+            } else {
+                res.status(500).json({ message: "File not Uploaded" })
+            }
+
+        })
+    } catch (error) {
+        res.status(500).json({ message: error })
+    }
+
+}
+
+exports.resetPassword = async(req,res,next)=>{
+    try {
+        let {password} = req.body
+        let user = await userModel.findById(req.id).select("+password").exec()
+
+        user.password = password
+
+        await user.save()
+        
+
+    } catch (error) {
+        
     }
 }

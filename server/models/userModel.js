@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Name is required']
     },
     username: {
-        unique:true,
+        unique: true,
         type: String,
         minLength: 2,
         // required: [true, 'username is required']
@@ -23,13 +23,16 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         minLength: 5,
-        select:false,
+        select: false,
         required: [true, "password field cannot be empty"],
         match: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
     },
     avatar: {
-        type: String,
-        default: 'avatar.png'
+        type: Object,
+        default: {
+            public_id: "",
+            url: ""
+        }
     },
     lists: [],
     stories: [{
@@ -37,15 +40,15 @@ const userSchema = new mongoose.Schema({
         ref: 'blog'
     }],
     passwordResetToken: {
-        type:Number,
-        default:0
+        type: Number,
+        default: 0
     }
 })
 
 userSchema.pre('save', async function () {
-    console.log("inside pre " , this.password);
+    console.log("inside pre ", this.password);
     this.password = await bcrypt.hash(this.password, 10)
-    console.log("after hash " , this.password);
+    console.log("after hash ", this.password);
 })
 
 userSchema.methods.comparepassword = function (password) {

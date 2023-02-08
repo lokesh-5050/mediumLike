@@ -1,5 +1,5 @@
 const express = require('express');
-const { homePage, signup, signin, signout, sendmail, resetPassword } = require('../controllers/indexController');
+const { homePage, signup, signin, signout, sendmail, resetPassword, upload, forgotPassword } = require('../controllers/indexController');
 const router = express.Router()
 const userModel = require('../models/userModel');
 const { authenticate } = require('../Utils/Auth');
@@ -26,8 +26,14 @@ router.post('/signout', signout)
 router.get('/send-mail', sendmail)
 
 /** 
-* @post route => reset-password/:id
+* @post route => forgot-password/:id
 */
-router.get('/reset-password/:id', resetPassword)
+router.get('/forgot-password/:id', forgotPassword)
+
+
+/** 
+* @post route => upload
+*/
+router.get('/upload', upload)
 
 module.exports = router;
