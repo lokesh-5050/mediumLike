@@ -21,7 +21,7 @@ router.post('/signin', signin)
 router.post('/signout', signout)
 
 /**
- * @post route => send-mail
+ * @post route => send-mail for forgot password
  */
 router.get('/send-mail', sendmail)
 
@@ -32,8 +32,14 @@ router.get('/forgot-password/:id', forgotPassword)
 
 
 /** 
-* @post route => upload
+* @post route => upload  , for cloudinary upload
 */
 router.get('/upload', upload)
+
+
+/** 
+* @post route => reset-password  , for reset-password
+*/
+router.get('/reset-password', resetPassword)
 
 module.exports = router;

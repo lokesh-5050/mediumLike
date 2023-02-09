@@ -82,7 +82,7 @@ exports.sendmail = async (req, res, next) => {
 
         let id = user._id
 
-        let pageUrl = req.protocol + "://" + req.hostname + ":" + process.env.PORT + "/api/v1" + `/reset-password/${user._id}`
+        let pageUrl = req.protocol + "://" + req.hostname + ":" + process.env.PORT + "/api/v1" + `/forgot-password/${user._id}`
         console.log(pageUrl);
 
         if (user.passwordResetToken === 0) {
@@ -155,17 +155,21 @@ exports.upload = async (req, res, next) => {
 
 }
 
-exports.resetPassword = async(req,res,next)=>{
+exports.resetPassword = async (req, res, next) => {
     try {
-        let {password} = req.body
-        let user = await userModel.findById(req.id).select("+password").exec()
+        let { currentPassword, newPassword } = req.body;
+        let user = await userModel.findById(req.id).select("+password").exec();
 
-        user.password = password
+        let match = await user.comparepassword(currentPassword);
 
-        await user.save()
-        
+        if (!match) res.status(501).json({ message: "Current Password does not matched" });
+
+        user.password = newPassword;
+        await user.save();
+
+        res.status(200).json({ message: "New Password Setted", user });
 
     } catch (error) {
-        
+        res.status(501).json(error);
     }
 }
