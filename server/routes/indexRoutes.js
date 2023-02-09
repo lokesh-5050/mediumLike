@@ -42,4 +42,9 @@ router.get('/upload', upload)
 */
 router.get('/reset-password', resetPassword)
 
+/** 
+* @post route => delete/:id  , for delete user
+*/
+router.get('/delete/user/:id', deletUser)
+
 module.exports = router;
