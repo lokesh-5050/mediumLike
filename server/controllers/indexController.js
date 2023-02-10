@@ -140,7 +140,7 @@ exports.upload = async (req, res, next) => {
                     url: secure_url
                 }
                 // await user.save()
-                //or 
+                //or you can try byUpdate method
                 // userModel.findByIdAndUpdate(id , {$set:user} , {new:true})
 
                 res.status(200).json({ message: "File uploaded" })
