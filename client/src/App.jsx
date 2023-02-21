@@ -12,6 +12,8 @@ import LoggedInNavbar from "./Components/Navbar/LoggedInNavbar";
 import Dashboard from "./Components/Profile/Dashboard/Dashboard";
 import Lists from "./Components/Profile/Lists/Lists";
 import Settings from "./Components/Profile/Settings/Settings";
+import SharedSettingsPage from "./Pages/SharedSettingsPage";
+import Security from "./Components/Profile/Settings/Security";
 const App = () => {
   return (
     <>
@@ -20,10 +22,12 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route path="loggedin" element={<LoggedInPage />} />
 
-          <Route path="username" element={<Dashboard/>}/>
-          <Route path="lists" element={<Lists/>}/>
-          <Route path="settings" element={<Settings/>}/>
-
+          <Route path="username" element={<Dashboard />} />
+          <Route path="lists" element={<Lists />} />
+          <Route path="settings" element={<SharedSettingsPage />}>
+            <Route index element={<Settings />} />
+            <Route path="security" element={<Security />} />
+          </Route>
         </Route>
       </Routes>
       {/* <Navbar/>
