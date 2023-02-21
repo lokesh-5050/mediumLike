@@ -11,6 +11,7 @@ import LoggedInPage from "./Pages/LoggedInPage";
 import LoggedInNavbar from "./Components/Navbar/LoggedInNavbar";
 import Dashboard from "./Components/Profile/Dashboard/Dashboard";
 import Lists from "./Components/Profile/Lists/Lists";
+import Settings from "./Components/Profile/Settings/Settings";
 const App = () => {
   return (
     <>
@@ -21,6 +22,7 @@ const App = () => {
 
           <Route path="username" element={<Dashboard/>}/>
           <Route path="lists" element={<Lists/>}/>
+          <Route path="settings" element={<Settings/>}/>
 
         </Route>
       </Routes>
