@@ -1,0 +1,26 @@
+{
+  "name": "mediumlike",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client":"npm run dev --prefix client",
+    "server":"npm run dev --prefix server",
+    "dev":"concurrently \"npm run client\" \"npm run server \""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lokesh-5050/mediumLike.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lokesh-5050/mediumLike/issues"
+  },
+  "homepage": "https://github.com/lokesh-5050/mediumLike#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
