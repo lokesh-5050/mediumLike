@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import module from "./Navbar.module.css";
 import medium_logo from "../../assets/logo_medium.png";
 import { RiSearchLine } from "react-icons/ri";
@@ -7,13 +7,20 @@ import { Link } from "react-router-dom";
 const LoggedInNavbar = () => {
   const [dropDown, setDropDown] = useState(false);
 
-  const handleDropDown = () => {
-    if (!dropDown) {
-      setDropDown(!dropDown);
-    } else {
-      setDropDown(!dropDown);
-    }
+  const removeDropdown = (e) => {
+    if (
+      e.target.id === "dropdown" ||
+      e.target.tagName === "svg" ||
+      e.target.tagName === "path"
+    )
+      return;
+    setDropDown(false);
   };
+  useEffect(() => {
+    window.addEventListener("click", removeDropdown);
+    return () => window.removeEventListener("click", removeDropdown);
+  }, []);
+
   return (
     <>
       <nav className={module.Lnav}>
@@ -71,8 +78,13 @@ const LoggedInNavbar = () => {
             ></path>
           </svg>
           <div className={`${module.Lprofile}`}>
-            <div onClick={handleDropDown} className={`${module.Lupper}`}>
+            <div
+              onClick={() => setDropDown(!dropDown)}
+              className={`${module.Lupper}`}
+              id="dropdown"
+            >
               <img
+                id="dropdown"
                 draggable="false"
                 src="https://miro.medium.com/fit/c/64/64/0*Jja5-LUVZq2qUgyl"
                 alt=""
@@ -99,7 +111,7 @@ const LoggedInNavbar = () => {
                       <path
                         d="M3.5 21.5v-4.34C3.5 15.4 7.3 14 12 14s8.5 1.41 8.5 3.16v4.34"
                         stroke="currentColor"
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                       ></path>
                     </svg>
                     <h5>Profile</h5>
@@ -122,7 +134,7 @@ const LoggedInNavbar = () => {
                       <path
                         d="M12.5 2.75h-8a2 2 0 0 0-2 2v11.5"
                         stroke="currentColor"
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                       ></path>
                     </svg>
                     <h5>Lists</h5>
@@ -144,7 +156,7 @@ const LoggedInNavbar = () => {
                       <path
                         d="M8 8.5h8M8 15.5h5M8 12h8"
                         stroke="currentColor"
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                       ></path>
                     </svg>
                     <h5>Stories</h5>

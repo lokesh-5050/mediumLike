@@ -1,34 +1,43 @@
 .wrap {
     width: 100%;
-    height: 50vh;
-    background-color: palegreen;
+    /* height: 50vh; */
+    /* background-color: palegreen; */
     display: flex;
-    padding: 0vmax 10vmax;
+    /* padding: 0vmax 3vmax; */
+    position: relative;
 }
 
 .left {
     min-width: 60vmax;
-    height: inherit;
-    background-color: rgb(185, 185, 185);
+    max-height:89vh;
+    padding-left: 15vh;
+    background-color: rgba(240, 169, 169, 0.493);
+    overflow-y: hidden;
 }
 
 .right {
-    width: 40vmax;
-    height: inherit;
-    background-color: palevioletred;
+    width: 30vmax;
+    height: fit-content;
+    position: fixed;
+    right: 0%;
+    padding: 2vh 4vh;
+    /* background-color: rgb(159, 216, 112); */
 }
 
 .topBar {
-    width: 100%;
-    height: 6vh;
-    background-color: teal;
+    width: 60.7%;
+    height: 9vh;
+    padding-top: 1vh;
+    background-color: rgb(255, 255, 255);
     border-bottom: 1px solid rgb(175, 175, 175);
     display: flex;
     align-items: center;
     gap: 1.5vmax;
+    top: 7%;
+    position: fixed;
 }
 
 .articles {
-    margin-top: -2vmax;
+    margin-top: 1.5vh;
     margin-left: -7vw;
 }

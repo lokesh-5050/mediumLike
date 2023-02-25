@@ -21,7 +21,6 @@ const App = () => {
         <Route path="/" element={<SharedHomePage />}>
           <Route index element={<HomePage />} />
           <Route path="loggedin" element={<LoggedInPage />} />
-
           <Route path="username" element={<Dashboard />} />
           <Route path="lists" element={<Lists />} />
           <Route path="settings" element={<SharedSettingsPage />}>

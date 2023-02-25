@@ -6,7 +6,7 @@ const Trending = () => {
         <>
             <div className={`${module.trending}`}>
                 <div className={`${module.title}`}>
-                    <i class="ri-line-chart-line"></i>
+                    <i className="ri-line-chart-line"></i>
                     <h5>Trending on Medium </h5>
                 </div>
 
