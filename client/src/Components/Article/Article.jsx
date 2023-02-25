@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import Roundedbtn from '../Ui/Roundedbtn'
 import module from './Article.module.css'
 const Article = ({coverWidth,coverTop, posterWidth}) => {
+    //Articles logic
     const isLoggedIn = useSelector((store)=> store.getStarted.isLoggedIn)
     return (
         <>
