@@ -5,29 +5,28 @@
     display: flex;
     /* padding: 0vmax 3vmax; */
     position: relative;
+    gap: 9vmax;
 }
 
 .left {
-    min-width: 60vmax;
-    max-height:89vh;
+    min-width: 30vmax;
+    /* max-height:89vh; */
+    max-height:fit-content;
     padding-left: 15vh;
-    background-color: rgba(240, 169, 169, 0.493);
-    overflow-y: hidden;
 }
 
 .right {
     width: 30vmax;
-    height: fit-content;
-    position: fixed;
-    right: 0%;
+    /* position: fixed; */
     padding: 2vh 4vh;
     /* background-color: rgb(159, 216, 112); */
+    
 }
 
 .topBar {
     width: 60.7%;
     height: 9vh;
-    padding-top: 1vh;
+    padding-top: 2vh;
     background-color: rgb(255, 255, 255);
     border-bottom: 1px solid rgb(175, 175, 175);
     display: flex;

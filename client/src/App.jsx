@@ -14,6 +14,7 @@ import Lists from "./Components/Profile/Lists/Lists";
 import Settings from "./Components/Profile/Settings/Settings";
 import SharedSettingsPage from "./Pages/SharedSettingsPage";
 import Security from "./Components/Profile/Settings/Security";
+import Editor from "./Components/Editor/Editor";
 const App = () => {
   return (
     <>
@@ -27,6 +28,7 @@ const App = () => {
             <Route index element={<Settings />} />
             <Route path="security" element={<Security />} />
           </Route>
+          <Route path="new-story" element={<Editor />} />
         </Route>
       </Routes>
       {/* <Navbar/>
